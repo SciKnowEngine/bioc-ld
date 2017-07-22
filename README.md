@@ -4,3 +4,7 @@ We define a linked-data-enabled implmentation of the [BioC](http://bioc.sourcefo
 
 We will develop tools for conversion to community standards presently. 
 
+The main contributions of this library are:
+
+* A version of a BioC ontology defined in `TTL` format: [bioc.ttl](bioc.ttl)
+* A mapping file to map semantic web elements to JSON-LD: [context.json](context.json) 
