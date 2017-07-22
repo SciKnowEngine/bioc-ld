@@ -1,0 +1,294 @@
+{
+  "@graph" : [ {
+    "@id" : "_:b11",
+    "@type" : "owl:Class",
+    "unionOf" : {
+      "@list" : [ "bioc:Annotation", "bioc:Sentence", "bioc:Passage" ]
+    }
+  }, {
+    "@id" : "_:b12",
+    "@type" : "owl:Class",
+    "unionOf" : {
+      "@list" : [ "bioc:Passage", "bioc:Document", "bioc:Sentence" ]
+    }
+  }, {
+    "@id" : "_:b3",
+    "@type" : "owl:Class",
+    "unionOf" : {
+      "@list" : [ "bioc:Passage", "bioc:Sentence" ]
+    }
+  }, {
+    "@id" : "_:b7",
+    "@type" : "owl:Class",
+    "unionOf" : {
+      "@list" : [ "bioc:Collection", "bioc:Infon" ]
+    }
+  }, {
+    "@id" : "http://purl.org/bioc/",
+    "@type" : "owl:Ontology"
+  }, {
+    "@id" : "bioc:Annotation",
+    "@type" : "owl:Class",
+    "label" : {
+      "@language" : "en",
+      "@value" : "BioCAnnotation"
+    }
+  }, {
+    "@id" : "bioc:Collection",
+    "@type" : "owl:Class",
+    "comment" : "Collection of documents.\n\nCollection of documents for a project. They may be an entire corpus or some portion of a corpus. Fields are provided to describe the collection.\n\nDocuments may appear empty if doing document at a time IO.",
+    "isDefinedBy" : "http://purl.org/bioc/",
+    "label" : {
+      "@language" : "en",
+      "@value" : "BioCCollection"
+    }
+  }, {
+    "@id" : "bioc:Document",
+    "@type" : "owl:Class",
+    "comment" : "Each bioc:Document in the bioc:Collection.\n\nAn id, typically from the original corpus, identifies the particular document. It includes bioc:Passages in the document and possibly bioc:Relations over annotations on the document.",
+    "label" : {
+      "@language" : "en",
+      "@value" : "BioCDocument"
+    }
+  }, {
+    "@id" : "bioc:Infon",
+    "@type" : "owl:Class",
+    "comment" : "A bioc:Infon elements is a simply a URI-based key/value pair linking the annotation to any semantic web annotation. This is deliberately open-ended URI to provide maximum  expressibilty. This is equivalent to the original use of the 'infons' field across multiple classes within the BioC standard.",
+    "label" : {
+      "@language" : "en",
+      "@value" : "BioCInfon"
+    }
+  }, {
+    "@id" : "bioc:Location",
+    "@type" : "owl:Class",
+    "comment" : "The connection to the original text can be made through the :offset, :length, and possibly the :text data properties.",
+    "label" : {
+      "@language" : "en",
+      "@value" : "BioCLocation"
+    }
+  }, {
+    "@id" : "bioc:Node",
+    "@type" : "owl:Class",
+    "label" : {
+      "@language" : "en",
+      "@value" : "BioCNode"
+    }
+  }, {
+    "@id" : "bioc:Passage",
+    "@type" : "owl:Class",
+    "comment" : "One passage in a bioc:Document.\n\n This might be the bioc:text in the passage and possibly bioc:Annotations over that text. It could be the bioc:Sentences in the passage. In either case it might include bioc:Relations over annotations on the passage.",
+    "label" : {
+      "@language" : "en",
+      "@value" : "BioCPassage"
+    }
+  }, {
+    "@id" : "bioc:Relation",
+    "@type" : "owl:Class",
+    "comment" : "Relationship between multiple bioc:Annotations and possibly other bioc:Relations.",
+    "label" : {
+      "@language" : "en",
+      "@value" : "BioCRelation"
+    }
+  }, {
+    "@id" : "bioc:Sentence",
+    "@type" : "owl:Class",
+    "comment" : "A bioc:Document offset to where the sentence begins in the bioc:Passage. This value is the sum of the passage offset and the local offset within the passage.",
+    "label" : {
+      "@language" : "en",
+      "@value" : "BioCSentence"
+    }
+  }, {
+    "@id" : "bioc:annotations",
+    "@type" : "owl:ObjectProperty",
+    "domain" : "_:b3",
+    "label" : {
+      "@language" : "en",
+      "@value" : "annotations"
+    },
+    "range" : "bioc:Annotation"
+  }, {
+    "@id" : "bioc:date",
+    "@type" : "owl:DatatypeProperty",
+    "domain" : "bioc:Collection",
+    "label" : {
+      "@language" : "en",
+      "@value" : "date"
+    },
+    "range" : "xsd:dateTime"
+  }, {
+    "@id" : "bioc:documents",
+    "@type" : "owl:ObjectProperty",
+    "domain" : "bioc:Collection",
+    "label" : {
+      "@language" : "en",
+      "@value" : "infons"
+    },
+    "range" : "bioc:Document"
+  }, {
+    "@id" : "bioc:id",
+    "@type" : "owl:DatatypeProperty",
+    "domain" : "bioc:Document",
+    "label" : {
+      "@language" : "en",
+      "@value" : "id"
+    },
+    "range" : "xsd:string"
+  }, {
+    "@id" : "bioc:key",
+    "@type" : "owl:DatatypeProperty",
+    "domain" : "_:b7",
+    "label" : {
+      "@language" : "en",
+      "@value" : "key"
+    },
+    "range" : "xsd:anyURI"
+  }, {
+    "@id" : "bioc:length",
+    "@type" : "owl:DatatypeProperty",
+    "domain" : "bioc:Location",
+    "label" : {
+      "@language" : "en",
+      "@value" : "length"
+    },
+    "range" : "xsd:integer"
+  }, {
+    "@id" : "bioc:locations",
+    "@type" : "owl:ObjectProperty",
+    "domain" : "bioc:Annotation",
+    "label" : {
+      "@language" : "en",
+      "@value" : "locations"
+    },
+    "range" : "bioc:Location"
+  }, {
+    "@id" : "bioc:nodes",
+    "@type" : "owl:ObjectProperty",
+    "domain" : "bioc:Relation",
+    "label" : {
+      "@language" : "en",
+      "@value" : "nodes"
+    },
+    "range" : "bioc:Node"
+  }, {
+    "@id" : "bioc:offset",
+    "@type" : "owl:DatatypeProperty",
+    "domain" : "bioc:Sentence",
+    "label" : {
+      "@language" : "en",
+      "@value" : "offset"
+    },
+    "range" : "xsd:integer"
+  }, {
+    "@id" : "bioc:passages",
+    "@type" : "owl:ObjectProperty",
+    "domain" : "bioc:Document",
+    "label" : {
+      "@language" : "en",
+      "@value" : "passages"
+    },
+    "range" : "bioc:Passage"
+  }, {
+    "@id" : "bioc:refid",
+    "@type" : "owl:DatatypeProperty",
+    "domain" : "bioc:Node",
+    "label" : {
+      "@language" : "en",
+      "@value" : "refid"
+    },
+    "range" : "xsd:string"
+  }, {
+    "@id" : "bioc:relations",
+    "@type" : "owl:ObjectProperty",
+    "domain" : "_:b12",
+    "label" : {
+      "@language" : "en",
+      "@value" : "relations"
+    },
+    "range" : "bioc:Relation"
+  }, {
+    "@id" : "bioc:role",
+    "@type" : "owl:DatatypeProperty",
+    "domain" : "bioc:Node",
+    "label" : {
+      "@language" : "en",
+      "@value" : "role"
+    },
+    "range" : "xsd:anyURI"
+  }, {
+    "@id" : "bioc:sentences",
+    "@type" : "owl:ObjectProperty",
+    "domain" : "bioc:Passage",
+    "label" : {
+      "@language" : "en",
+      "@value" : "sentences"
+    },
+    "range" : "bioc:Sentence"
+  }, {
+    "@id" : "bioc:source",
+    "@type" : "owl:DatatypeProperty",
+    "domain" : "bioc:Collection",
+    "label" : {
+      "@language" : "en",
+      "@value" : "source"
+    },
+    "range" : "xsd:anyURI"
+  }, {
+    "@id" : "bioc:text",
+    "@type" : "owl:DatatypeProperty",
+    "domain" : "_:b11",
+    "label" : {
+      "@language" : "en",
+      "@value" : "text"
+    },
+    "range" : "xsd:string"
+  }, {
+    "@id" : "bioc:value",
+    "@type" : "owl:DatatypeProperty",
+    "domain" : "bioc:Infon",
+    "label" : {
+      "@language" : "en",
+      "@value" : "value"
+    },
+    "range" : "xsd:anyURI"
+  }, {
+    "@id" : "rdfs:label",
+    "@type" : "owl:AnnotationProperty"
+  } ],
+  "@context" : {
+    "rest" : {
+      "@id" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+      "@type" : "@id"
+    },
+    "first" : {
+      "@id" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+      "@type" : "@id"
+    },
+    "label" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#label"
+    },
+    "range" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#range",
+      "@type" : "@id"
+    },
+    "domain" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#domain",
+      "@type" : "@id"
+    },
+    "unionOf" : {
+      "@id" : "http://www.w3.org/2002/07/owl#unionOf",
+      "@type" : "@id"
+    },
+    "comment" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#comment"
+    },
+    "isDefinedBy" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
+      "@type" : "@id"
+    },
+    "owl" : "http://www.w3.org/2002/07/owl#",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "bioc" : "http://purl.org/bioc/",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#"
+  }
+}
