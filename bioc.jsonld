@@ -1,31 +1,51 @@
 {
   "@graph" : [ {
-    "@id" : "_:b11",
-    "@type" : "owl:Class",
-    "unionOf" : {
-      "@list" : [ "bioc:Annotation", "bioc:Sentence", "bioc:Passage" ]
-    }
-  }, {
-    "@id" : "_:b12",
-    "@type" : "owl:Class",
-    "unionOf" : {
-      "@list" : [ "bioc:Passage", "bioc:Document", "bioc:Sentence" ]
-    }
-  }, {
-    "@id" : "_:b3",
+    "@id" : "_:b10",
     "@type" : "owl:Class",
     "unionOf" : {
       "@list" : [ "bioc:Passage", "bioc:Sentence" ]
     }
   }, {
-    "@id" : "_:b7",
+    "@id" : "_:b12",
     "@type" : "owl:Class",
     "unionOf" : {
       "@list" : [ "bioc:Collection", "bioc:Infon" ]
     }
   }, {
+    "@id" : "_:b16",
+    "@type" : "owl:Class",
+    "unionOf" : {
+      "@list" : [ "bioc:Passage", "bioc:Document", "bioc:Sentence", "bioc:Annotation", "bioc:Relation" ]
+    }
+  }, {
+    "@id" : "_:b18",
+    "@type" : "owl:Class",
+    "unionOf" : {
+      "@list" : [ "bioc:Passage", "bioc:Document", "bioc:Sentence" ]
+    }
+  }, {
+    "@id" : "_:b2",
+    "@type" : "owl:Class",
+    "unionOf" : {
+      "@list" : [ "bioc:Annotation", "bioc:Sentence", "bioc:Passage" ]
+    }
+  }, {
     "@id" : "http://purl.org/bioc/",
-    "@type" : "owl:Ontology"
+    "@type" : "owl:Ontology",
+    "abstract" : "The BioC format provides a lightweight offline annotation framework (for JSON or XML-formatted data) with very lightweight semantics but has not, to date, been developed as linked data. In this ontology, we provide a simple serialization of BioC classes and attributes for easy publishing to a semantic-web-compatible framework. This is preliminary work and will require additional mapping to existing Web Annotation standards.",
+    "description" : "A bridging ontology for easy publishing of annotations developed under the National Library of Medicine's BioC format as linked data.",
+    "license" : "https://opensource.org/licenses/MIT",
+    "references" : "Comeau DC, Islamaj Doğan R, Ciccarese P, Cohen KB, Krallinger M, Leitner F, Lu Z, Peng Y, Rinaldi F, Torii M, Valencia A, Verspoor K, Wiegers TC, Wu CH, Wilbur WJ. 'BioC: a minimalist approach to interoperability for biomedical text processing.' Database (Oxford). 2013 Sep 18;2013:bat064. doi:10.1093/database/bat064. Print 2013. PubMed PMID: 24048470; PubMed Central PMCID:PMC3889917.'",
+    "title" : "BioC Linked Data",
+    "preferredNamespacePrefix" : "bioc",
+    "preferredNamespaceUri" : "http://purl.org/bioc/",
+    "contributor" : [ "(This does not imply any endorsement from any members of this group and are listed here for the purpose of attribution)", "The BioC group: P. Ciccarese, K. Cohen, M. Krallinger, F. Leitner, L. Hirschman, Z. Lu, Y. Peng, F. Rinaldi, M. Torii, A. Valencia, K. Verspoor, T. Wiegers, C. Wu" ],
+    "creator" : "G. Burns",
+    "dateCreated" : "07/22/2017",
+    "logo" : "http://bioc.sourceforge.net/BioClogo.jpg",
+    "versionInfo" : "0.1",
+    "hadPrimarySource" : "http://bioc.sourceforge.org/",
+    "wasAttributedTo" : "http://orcid.org/0000-0003-1493-865X"
   }, {
     "@id" : "bioc:Annotation",
     "@type" : "owl:Class",
@@ -100,7 +120,7 @@
   }, {
     "@id" : "bioc:annotations",
     "@type" : "owl:ObjectProperty",
-    "domain" : "_:b3",
+    "domain" : "_:b10",
     "label" : {
       "@language" : "en",
       "@value" : "annotations"
@@ -121,7 +141,7 @@
     "domain" : "bioc:Collection",
     "label" : {
       "@language" : "en",
-      "@value" : "infons"
+      "@value" : "documents"
     },
     "range" : "bioc:Document"
   }, {
@@ -134,9 +154,18 @@
     },
     "range" : "xsd:string"
   }, {
+    "@id" : "bioc:infons",
+    "@type" : "owl:ObjectProperty",
+    "domain" : "_:b16",
+    "label" : {
+      "@language" : "en",
+      "@value" : "infons"
+    },
+    "range" : "bioc:Infon"
+  }, {
     "@id" : "bioc:key",
     "@type" : "owl:DatatypeProperty",
-    "domain" : "_:b7",
+    "domain" : "_:b12",
     "label" : {
       "@language" : "en",
       "@value" : "key"
@@ -199,7 +228,7 @@
   }, {
     "@id" : "bioc:relations",
     "@type" : "owl:ObjectProperty",
-    "domain" : "_:b12",
+    "domain" : "_:b18",
     "label" : {
       "@language" : "en",
       "@value" : "relations"
@@ -235,7 +264,7 @@
   }, {
     "@id" : "bioc:text",
     "@type" : "owl:DatatypeProperty",
-    "domain" : "_:b11",
+    "domain" : "_:b2",
     "label" : {
       "@language" : "en",
       "@value" : "text"
@@ -255,14 +284,6 @@
     "@type" : "owl:AnnotationProperty"
   } ],
   "@context" : {
-    "rest" : {
-      "@id" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
-      "@type" : "@id"
-    },
-    "first" : {
-      "@id" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
-      "@type" : "@id"
-    },
     "label" : {
       "@id" : "http://www.w3.org/2000/01/rdf-schema#label"
     },
@@ -274,6 +295,14 @@
       "@id" : "http://www.w3.org/2000/01/rdf-schema#domain",
       "@type" : "@id"
     },
+    "rest" : {
+      "@id" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+      "@type" : "@id"
+    },
+    "first" : {
+      "@id" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+      "@type" : "@id"
+    },
     "unionOf" : {
       "@id" : "http://www.w3.org/2002/07/owl#unionOf",
       "@type" : "@id"
@@ -281,14 +310,63 @@
     "comment" : {
       "@id" : "http://www.w3.org/2000/01/rdf-schema#comment"
     },
+    "hadPrimarySource" : {
+      "@id" : "http://www.w3.org/ns/prov#hadPrimarySource"
+    },
+    "wasAttributedTo" : {
+      "@id" : "http://www.w3.org/ns/prov#wasAttributedTo",
+      "@type" : "@id"
+    },
+    "abstract" : {
+      "@id" : "http://purl.org/dc/terms/abstract"
+    },
+    "dateCreated" : {
+      "@id" : "http://schema.org/dateCreated"
+    },
+    "creator" : {
+      "@id" : "http://schema.org/creator"
+    },
+    "logo" : {
+      "@id" : "http://schema.org/logo",
+      "@type" : "@id"
+    },
+    "license" : {
+      "@id" : "http://purl.org/dc/terms/license",
+      "@type" : "@id"
+    },
+    "contributor" : {
+      "@id" : "http://schema.org/contributor"
+    },
+    "title" : {
+      "@id" : "http://purl.org/dc/terms/title"
+    },
+    "references" : {
+      "@id" : "http://purl.org/dc/terms/references"
+    },
+    "description" : {
+      "@id" : "http://purl.org/dc/terms/description"
+    },
+    "preferredNamespacePrefix" : {
+      "@id" : "http://purl.org/vocab/vann/preferredNamespacePrefix"
+    },
+    "preferredNamespaceUri" : {
+      "@id" : "http://purl.org/vocab/vann/preferredNamespaceUri"
+    },
+    "versionInfo" : {
+      "@id" : "http://www.w3.org/2002/07/owl#versionInfo"
+    },
     "isDefinedBy" : {
       "@id" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
       "@type" : "@id"
     },
+    "schema" : "http://schema.org/",
+    "dc-terms" : "http://purl.org/dc/terms/",
     "owl" : "http://www.w3.org/2002/07/owl#",
     "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "bioc" : "http://purl.org/bioc/",
     "xsd" : "http://www.w3.org/2001/XMLSchema#",
-    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#"
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "vann" : "http://purl.org/vocab/vann/",
+    "prov" : "http://www.w3.org/ns/prov#"
   }
 }
