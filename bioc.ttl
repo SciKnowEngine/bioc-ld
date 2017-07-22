@@ -53,7 +53,7 @@ bioc:annotations rdf:type owl:ObjectProperty ;
 bioc:documents rdf:type owl:ObjectProperty ;
 			rdfs:domain bioc:Collection ;
       rdfs:range bioc:Document ;
-      rdfs:label "infons"@en .
+      rdfs:label "documents"@en .
 
 ###  http://bioc.org/locations
 bioc:locations rdf:type owl:ObjectProperty ;
@@ -63,7 +63,7 @@ bioc:locations rdf:type owl:ObjectProperty ;
 
 ###  http://bioc.org/nodes
 bioc:nodes rdf:type owl:ObjectProperty ;
-			rdfs:domain bioc:Relation;
+	 rdfs:domain bioc:Relation;
       rdfs:range bioc:Node;
       rdfs:label "nodes"@en .
 
@@ -83,6 +83,19 @@ bioc:relations rdf:type owl:ObjectProperty ;
              ] ;
       rdfs:range bioc:Relation ;
       rdfs:label "relations"@en .
+
+###  http://bioc.org/infons
+bioc:infons rdf:type owl:ObjectProperty ;
+			rdfs:domain [ rdf:type owl:Class ;
+               owl:unionOf ( bioc:Passage
+                 bioc:Document
+                 bioc:Sentence
+                 bioc:Annotation
+                 bioc:Relation
+                     )
+             ] ;
+      rdfs:range bioc:Infon ;
+      rdfs:label "infons"@en .
 
 ###  http://bioc.org/sentences
 bioc:sentences rdf:type owl:ObjectProperty ;
